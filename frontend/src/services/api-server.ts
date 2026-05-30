@@ -1,6 +1,6 @@
 import type { PostDetail, Comment } from "@/types";
 
-const BASE = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001/api";
+const BASE = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:3001/api";
 
 interface PostIdsResponse {
   id: string;

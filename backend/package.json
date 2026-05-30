@@ -6,7 +6,9 @@
     "dev": "npx prisma generate && tsx watch src/main.ts",
     "build": "npx prisma generate && tsc",
     "start": "node dist/main.js",
+    "start:prod": "node dist/main.js",
     "db:push": "npx prisma db push",
+    "db:deploy": "npx prisma migrate deploy",
     "db:studio": "npx prisma studio",
     "test": "jest --config jest.config.js",
     "test:watch": "jest --config jest.config.js --watch"
