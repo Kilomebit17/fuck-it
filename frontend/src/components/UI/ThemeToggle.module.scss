@@ -1,0 +1,24 @@
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: var(--text-secondary);
+  font-size: 16px;
+  border-radius: 50%;
+  transition: color 0.15s, background 0.15s;
+  &:hover {
+    color: var(--text);
+    background: var(--bg-secondary);
+  }
+}
+
+@media (max-width: 379px) {
+  .toggle {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}

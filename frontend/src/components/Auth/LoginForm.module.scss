@@ -1,0 +1,75 @@
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.card {
+  width: 100%;
+  max-width: 380px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 24px;
+}
+
+.formGroup {
+  margin-bottom: 16px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.idRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.idInputWrap {
+  display: flex;
+  gap: 8px;
+  flex: 1;
+}
+
+.idInput {
+  flex: 1;
+  min-width: 0;
+}
+
+.hint {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+
+  &.exists { color: #ff4d4d; }
+}
+
+.passwordGroup {
+  margin-bottom: 16px;
+  margin-top: 24px;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 15px;
+}

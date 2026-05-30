@@ -1,0 +1,45 @@
+.relatedSection {
+  margin-top: 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+.relatedTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.relatedGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.relatedCard {
+  display: block;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+
+  &:hover {
+    border-color: var(--accent);
+    background: var(--bg-secondary);
+  }
+}
+
+.relatedAuthor {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.relatedExcerpt {
+  font-size: 14px;
+  color: var(--text);
+  margin-top: 4px;
+  line-height: 1.4;
+}

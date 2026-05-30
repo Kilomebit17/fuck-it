@@ -1,0 +1,87 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String            @id @default(uuid())
+  anonymousId     String            @unique
+  passwordHash    String
+  interests       String[]          @default([])
+  createdAt       DateTime          @default(now())
+  posts           Post[]
+  comments        Comment[]
+  reactions       Reaction[]
+  postViews       UserPostView[]
+  postDetailViews PostDetailView[]
+}
+
+model Post {
+  id                String         @id @default(uuid())
+  userId            String
+  content           String
+  hashtags          String[]       @default([])
+  createdAt         DateTime       @default(now())
+  likesCount        Int            @default(0)
+  dislikesCount     Int            @default(0)
+  commentsCount     Int            @default(0)
+  viewsCount        Int            @default(0)
+  shownToUsersCount Int            @default(0)
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comments          Comment[]
+  views             UserPostView[]
+  detailViews       PostDetailView[]
+}
+
+model Comment {
+  id              String    @id @default(uuid())
+  postId          String
+  parentCommentId String?
+  userId          String
+  content         String
+  createdAt       DateTime  @default(now())
+  likesCount      Int       @default(0)
+  dislikesCount   Int       @default(0)
+  post            Post      @relation(fields: [postId], references: [id], onDelete: Cascade)
+  parent          Comment?  @relation("CommentReplies", fields: [parentCommentId], references: [id], onDelete: SetNull)
+  replies         Comment[] @relation("CommentReplies")
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Reaction {
+  id         String @id @default(uuid())
+  userId     String
+  targetType String
+  targetId   String
+  type       String
+  user       User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, targetType, targetId])
+  @@index([targetType, targetId])
+}
+
+model UserPostView {
+  id        String   @id @default(uuid())
+  userId    String
+  postId    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+}
+
+model PostDetailView {
+  id        String   @id @default(uuid())
+  userId    String
+  postId    String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, postId])
+}
